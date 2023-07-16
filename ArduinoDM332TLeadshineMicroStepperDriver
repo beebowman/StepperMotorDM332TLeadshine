@@ -5,6 +5,9 @@
 // Once I got the power right, it turned. Yay! But it was only turning in one direction, not the other, no matter whether I set the DIR pin to HIGH or LOW. 
 // The solution to getting the motor to run one way and then the other, was to connect a pin on the Arduino to the ENA pin fo teh DM332T micro stepper motor driver 
 
+//Credits: 
+//Credit to here for NEMA connection to motor driver: https://vslot-poland.com/how-to-connet-arduino-to-nema 
+
 int x;
 
 void setup() {
