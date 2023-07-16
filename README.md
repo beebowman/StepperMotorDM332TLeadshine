@@ -3,6 +3,11 @@ Arduino code to control stepper motor with micro stepper driver such as DM332T L
 
 This Github repository folder contains Arduino code that you can use to control a NEMA 23 stepper motor that has been hooked up to a DM332T Leadshine Digital Stepping Driver (Micro Stepper Driver). A micro stepper driver is useful for ensuring very precise control of a stepper motor, since it has the option of setting the pulse/rev (number of pulses per revolution) for the motor so that you can move very fast or very slow and control exactly how many revolutions to turn. 
 
+Credit: 
+//Credit to here for IR receiver code: https://roboticsbackend.com/arduino-ir-remote-controller-tutorial-setup-and-map-buttons/ 
+//Credit to here for NEMA connection to motor driver: https://vslot-poland.com/how-to-connet-arduino-to-nema 
+
+
 **YOU WILL NEED: **
 - NEMA 23 motor (it can be standalone or it can be attached to a linear guide, either is fine)
 - 24V power supply, with at least 2.5A current (if it has two bare wires poking out, red and black, then you won't need any adapters. Otherwise, get the power supply adapters below
