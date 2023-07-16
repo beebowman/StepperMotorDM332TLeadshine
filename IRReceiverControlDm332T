@@ -1,0 +1,115 @@
+//DEBUGGING: Why is it only turning one particular direction????? 
+//TIP: make sure the power is turned on for your power supply LED indicator light. Make sure the DM332T also has the power indicator light turned on and green. 
+// If those two indicator power lights aren't on, then you have a problem with power; either loose pins to your DM332T, or need better power supply. I took adapters off wall and it magically worked! 
+// Check the table regarding the pins, in the online pdf instruction manual for your DM332T 
+// Once I got the power right, it turned. Yay! But it was only turning in one direction, not the other, no matter whether I set the DIR pin to HIGH or LOW. 
+// The solution to getting the motor to run one way and then the other, was to connect a pin on the Arduino to the ENA pin fo teh DM332T micro stepper motor driver 
+
+//Wiring to IR receiver: 
+//G - Ground, R - Red, positive Voltage, Y - Signal.
+//Connect G (Ground) of IR receiver to GND of Arduino
+//Connect R (Red, Voltage) of IR receiver to +5V of Arduino
+//Connect Y (Signal) of IR receiver to Pin 2 of Arduino
+
+//Credit to here for IR receiver code: https://roboticsbackend.com/arduino-ir-remote-controller-tutorial-setup-and-map-buttons/ 
+  //NOTE: follow the directions in the above IR receiver code tutorial to get that part of the code set up properly 
+//Credit to here for NEMA connection to motor driver: https://vslot-poland.com/how-to-connet-arduino-to-nema 
+
+#include <IRremote.h> //include IR receiver library 
+#define IR_RECEIVE_PIN 2 
+
+#define IR_BUTTON_DOWN 7
+#define IR_BUTTON_UP 9
+#define IR_BUTTON_PAUSE_PLAY 64
+#define IR_BUTTON_1 12 
+#define IR_BUTTON_2 24 
+
+int x;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(7,OUTPUT); //enable, ENA 
+  pinMode(9,OUTPUT); //pulse, PUL
+  pinMode(8,OUTPUT); //direction, DIR, used to be pin 8
+
+  Serial.begin(9600); //used for both debugging as well as for IR remote code 
+
+  //Section of code to set up IR remote: 
+  IrReceiver.begin(IR_RECEIVE_PIN);
+
+  //turn on the Enable pin on the DM332T (set to +5V)
+  digitalWrite(7,HIGH); //set to ENABLE 
+
+}
+
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  if (IrReceiver.decode()) {
+    IrReceiver.resume();
+    //Serial.println(IrReceiver.decodedIRData.command); Start with this code uncommented at first, then coment it out after you have determined button codes
+    
+    //start with the code below commented, then uncomment it after you determined the button names (codes)
+    int command = IrReceiver.decodedIRData.command;
+    switch (command) {
+      case IR_BUTTON_DOWN: {
+        Serial.println("Pressed on button DOWN");
+        
+        //Make the motor go downwards (backwards): 
+        digitalWrite(8,HIGH); //set direction "go backwards"
+        Serial.println("Pin 8 DIR has now been set to on HIGH");
+        delayMicroseconds(500);
+        delayMicroseconds(500); //wait (pause) for 500 microseconds 
+        for(x=0;x<100;x++) //this loop dictates the distance it travels (or maybe the time that it travels??)
+        {
+          digitalWrite(9,HIGH); //pulse (move) the motor 
+          delayMicroseconds(500); //wait (pause) for 500 microseconds 
+          digitalWrite(9,LOW); //stop the motor 
+          delayMicroseconds(500); //wait (pause) for 500 microseconds 
+        }
+
+      break;
+      }
+      case IR_BUTTON_UP: {
+        Serial.println("Pressed on button UP");
+
+        //Make the motor go upwards (forwards): 
+        digitalWrite(8,LOW); //Set direction to be the opposite way
+        Serial.println("Pin 8 DIR has been being set to on LOW");
+        delayMicroseconds(500);
+        delayMicroseconds(500); //wait (pause) for 500 microseconds 
+        for(x=0;x<100;x++) //this loop dictates the distance it travels. 
+        {
+          digitalWrite(9,HIGH); //pulse (move) the motor 
+          delayMicroseconds(500); //wait (pause) for 500 microseconds 
+          digitalWrite(9,LOW); //stop the motor 
+          delayMicroseconds(500); //wait (pause) for 500 microseconds 
+        }
+
+        break;
+      }
+      case IR_BUTTON_PAUSE_PLAY: {
+        Serial.println("Pressed on button Pause or Play");
+        break;
+      }
+      case IR_BUTTON_1: {
+        Serial.println("Pressed on button 1");
+        break;
+      }
+      case IR_BUTTON_2: {
+        Serial.println("Pressed on button 2");
+        break;
+      }
+      default: {
+        Serial.println("Button not recognized");
+      }
+    }
+
+    //keep the code below
+
+  }
+
+
+
+}
