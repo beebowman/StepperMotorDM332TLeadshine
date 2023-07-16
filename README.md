@@ -5,9 +5,13 @@ This Github repository folder contains Arduino code that you can use to control 
 
 **YOU WILL NEED: **
 - NEMA 23 motor (it can be standalone or it can be attached to a linear guide, either is fine)
-- 24V power supply (if it has two bare wires poking out, red and black, then you won't need any adapters. Otherwise, get the power supply adapters below 
+- 24V power supply, with at least 2.5A current (if it has two bare wires poking out, red and black, then you won't need any adapters. Otherwise, get the power supply adapters below
+  For Example: https://www.tinkerforge.com/en/shop/24v-4a-ac-dc-power-adapter.html (this is where I got mine - didn't need adapters) 
+  For Example: https://www.amazon.com/ALITOVE-100-240V-Adapter-Converter-5-5x2-1mm/dp/B01GC6VS8I/ref=sr_1_1_sspa?crid=18000JNWLWCRJ&keywords=24V+power+supply+2.5A&qid=1689513828&sprefix=24v+power+supply+2.5a%2Caps%2C101&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1
+  Make sure your power supply and power supply terminal block adapters fit together
 - Power Supply Adapters (For example, Female DC Power adapter - 2.1mm jack to screw terminal block from Adafruit.com). You may need to check to make sure that the 2.1mm jack can connect to your 24V power supply; if not, get a connector that has a screw terminal block on one side, and the correct jack size on the other side so that it will connect to the other side of the power supply.
-  For example: https://www.adafruit.com/product/368 
+  For example: [https://www.adafruit.com/product/368](https://www.amazon.com/gp/product/B07JMY5XXT/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+  Or this could work: https://www.adafruit.com/product/1328 
 - Adafruit Pocket Screwdriver, or equivalent, such as a Digilent screwdriver (you will use the flat side) 
   For example: https://www.adafruit.com/product/3284
   OR: https://digilent.com/shop/digilent-screwdriver/ 
