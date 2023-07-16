@@ -6,6 +6,7 @@ This Github repository folder contains Arduino code that you can use to control 
 Credits: 
 Here's where I got the IR receiver code: https://roboticsbackend.com/arduino-ir-remote-controller-tutorial-setup-and-map-buttons/ 
 Here's where I got code to setup NEMA connection to motor driver: https://vslot-poland.com/how-to-connet-arduino-to-nema 
+![Uploading ArduinoStepperDriverDM322T.png…]()
 
 
 **YOU WILL NEED: **
