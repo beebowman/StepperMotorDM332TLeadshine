@@ -1,12 +1,27 @@
-//DEBUGGING: Why is it only turning one particular direction????? 
-//TIP: make sure the power is turned on for your power supply LED indicator light. Make sure the DM332T also has the power indicator light turned on and green. 
-// If those two indicator power lights aren't on, then you have a problem with power; either loose pins to your DM332T, or need better power supply. I took adapters off wall and it magically worked! 
-// Check the table regarding the pins, in the online pdf instruction manual for your DM332T 
-// Once I got the power right, it turned. Yay! But it was only turning in one direction, not the other, no matter whether I set the DIR pin to HIGH or LOW. 
-// The solution to getting the motor to run one way and then the other, was to connect a pin on the Arduino to the ENA pin fo teh DM332T micro stepper motor driver 
+//Code By: Bo Bowman
+//Updated: July 2023
 
-//Credits: 
-//Credit to here for NEMA connection to motor driver: https://vslot-poland.com/how-to-connet-arduino-to-nema 
+//WIRING: 
+//Connect Red wire of NEMA23 motor to A+ on the DM332T Stepping driver 
+//Connect Green wire of NEMA23 motor to A- on the DM332T Stepping driver 
+//Connect Yellow wire of NEMA23 motor to B+ on the DM332T Stepping driver 
+//Connect Blue wire of NEMA23 motor to B- on the DM332T Stepping driver 
+//Connect Pin ~9 of Arduino to PUL on the DM332T Stepping driver 
+//Connect Pin 8 of Arduino to DIR on the DM332T Stepping Driver
+//Connect Pin 7 of Arduino to ENA on the DM332T Stepping Driver
+//Connect Red (+) of Power Supply to +Vdc on the DM332T Stepping Driver
+//Connect Black (-) of Power Supply to GND on the DM332T Stepping Driver
+
+//TIPS: 
+//Use digilent screwdriver to screw/unscrew the terminal blocks on the DM332T to connect jumper wires 
+//Use a power jack to 2 terminal block connector/adapter to connect jumper wires to your power supply  
+
+//TROUBLESHOOTING: 
+//If motor is not moving, ensure the green indicator is turned on for the DM332T PWR. If it isn't, there's an issue with your power supply. Also check the Pulse/rev, your motor might just be turning super slow.  
+//If motor is only moving in one direction, check wiring connection to ENA. If that still doesn't work, change the signal sent from HIGH to LOW to the ENA from Arduino pin 7. 
+//The DM332T instruction manual is confusing regarding ENA; for Arduino, the ENA should be connected to an Arduino pin set to HIGH (+5V) in order for the motor to switch directions using the DIR pin 
+
+//Work Attribution: V-Slot, NEMA connection to motor driver https://vslot-poland.com/how-to-connet-arduino-to-nema 
 
 int x;
 
